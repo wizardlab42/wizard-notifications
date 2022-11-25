@@ -14,8 +14,8 @@ async function bootstrap() {
   app.set('trust proxy', 1)
 
   const config = new DocumentBuilder()
-    .setTitle('Документация по API')
-    .setDescription('Refferency Requests API')
+    .setTitle('Wizard Notifications API')
+    .setDescription('')
     .setVersion('1.0')
     .build()
 
