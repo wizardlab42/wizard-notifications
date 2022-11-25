@@ -3,7 +3,7 @@ import { IsEmail, IsMobilePhone, IsString, Length } from 'class-validator'
 export class FeedbackBodyDto {
   @IsString()
   @Length(1, 64)
-  @ApiProperty({ description: 'Fullname' })
+  @ApiProperty({ description: 'Fullname', example: 'John Smith' })
   name: string
 
   @IsString()
