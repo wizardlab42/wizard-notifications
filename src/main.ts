@@ -29,6 +29,8 @@ async function bootstrap() {
     }),
   )
 
+  app.setGlobalPrefix('api')
+
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('docs', app, document)
 
