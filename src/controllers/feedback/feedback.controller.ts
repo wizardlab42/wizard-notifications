@@ -1,8 +1,9 @@
 import { Throttle, ThrottlerGuard } from '@nestjs/throttler'
 import { FeedbackService } from './feedback.service'
-import { Controller, Body, Post, UseGuards, Ip } from '@nestjs/common'
+import { Controller, Body, Post, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger'
 import { FeedbackBodyDto } from './dto/feedback.body.dto'
+import { RealIP } from 'nestjs-real-ip'
 
 @ApiTags('Feedback')
 @Controller('feedback')
@@ -14,7 +15,7 @@ export class FeedbackController {
   @ApiResponse({ status: 200, description: 'Feedback sent' })
   @UseGuards(ThrottlerGuard)
   @Throttle(2, 60)
-  async sendFeedback(@Body() body: FeedbackBodyDto, @Ip() ip: string) {
+  async sendFeedback(@Body() body: FeedbackBodyDto, @RealIP() ip: string) {
     return this.service.send(body, ip)
   }
 }
