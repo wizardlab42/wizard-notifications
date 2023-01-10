@@ -3,5 +3,7 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class QuizService {
-  private send(body: QuizDTO) {}
+  send(body: QuizDTO) {
+    console.log(body)
+  }
 }
