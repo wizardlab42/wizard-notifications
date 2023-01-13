@@ -5,6 +5,7 @@ import { APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core'
 import { ResponseInterceptor } from './interceptors/interceptor.response'
 import { FeedbackModule } from './controllers/feedback/feedback.module'
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler'
+import { MailerModule } from '@nestjs-modules/mailer'
 
 @Module({
   imports: [
@@ -14,6 +15,15 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler'
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 30,
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.sendgrid.net',
+        auth: {
+          user: 'apikey',
+          pass: process.env.SMTP_PASS,
+        },
+      },
     }),
     FeedbackModule,
     QuizModule,
