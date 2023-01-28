@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
 import * as basic_auth from 'express-basic-auth'
+import * as SendPulse from 'sendpulse-api'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -42,6 +43,11 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     }),
   )
+
+  const { SENDPULSE_ID, SENDPULSE_SECRET } = process.env
+  SendPulse.init(SENDPULSE_ID, SENDPULSE_SECRET, '/tmp/', () => {
+    // SendPulse.listAddressBooks(console.log, 10, 0)
+  })
 
   await app.listen(process.env.PORT || 3000)
 }
