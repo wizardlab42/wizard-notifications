@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsEmail, IsMobilePhone, IsString, Length } from 'class-validator'
+import { IsEmail, IsString, Length } from 'class-validator'
 export class FeedbackBodyDto {
   @IsString()
   @Length(1, 64)
