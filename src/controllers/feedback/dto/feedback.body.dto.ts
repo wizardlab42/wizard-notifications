@@ -18,7 +18,6 @@ export class FeedbackBodyDto {
   message: string
 
   @IsString()
-  @IsMobilePhone()
   @Length(4, 32)
   @ApiProperty({ description: 'Phone', example: '(555) 555-1234' })
   phone: string
