@@ -46,7 +46,7 @@ async function bootstrap() {
 
   const { SENDPULSE_ID, SENDPULSE_SECRET } = process.env
   SendPulse.init(SENDPULSE_ID, SENDPULSE_SECRET, '/tmp/', () => {
-    // SendPulse.listAddressBooks(console.log, 10, 0)
+    SendPulse.listAddressBooks(console.log, 10, 0)
   })
 
   await app.listen(process.env.PORT || 3000)
